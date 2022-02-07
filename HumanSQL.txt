@@ -1,0 +1,58 @@
+QUERY:
+- ϵ
+- "Show me COLS from DATA"		-> SELECT <COLS> FROM <DATA>;
+COLS:
+- everything    								-> *
+- SELECTOR[, SELECTOR, SELECTOR...]
+- Unique SELECTOR[, SELECTOR, SELECTOR, ...]  	-> DISTINCT <SELECTORS>
+SELECTOR:
+- col (given col is in data)
+- MODIFIER col (given col is in data)
+DATA:
+- DATA COMBINATION
+- DATA WHERE
+- DATA SHORTENER
+- DATA sorted SORT_ORDER
+- Table
+- View
+COMBINATION:
+- "Combined with DATA on col1 = col2 by JOIN_TYPE join"    -> <DATA> <JOIN_TYPE> JOIN <DATA> ON col1 = col2
+JOIN_TYPE:
+- Inner
+- Left outer
+- Right outer
+- Full outer
+WHERE:
+- "Where COND"
+COND:
+- Col satisfies SUB_COND
+- Col satisfies SUB_COND OP COND
+SUB_COND
+- "contains <str>" 				-> col LIKE "%<str>%"
+- "starts with <str>" 			-> col LIKE "<str>%"
+- "Ends with <str>" 			-> col LIKE "%<str>"
+- "Matches <str>" 				-> col LIKE "<str>"
+- "Follows <regex>" 			-> col LIKE <regex>
+- "Between <value> and <value>" -> col BETWEEN <value> AND <value>
+- "Is null" 					-> col IS NULL
+- "Is <value>"					-> col = <value>
+- "Is greater than <value>		-> col > <value>
+- "Is less than <value>			-> col < <value>
+OP:
+- AND
+- OR
+- XOR (?)
+MODIFIER:
+- "Number of" -> COUNT
+- "Min of"    -> MIN
+- "Max of"    -> MAX
+- "Sum of"	  -> SUM
+SHORTENER:
+- "only show first <value> rows" -> LIMIT <value>
+SORT_ORDER:
+- Descending
+- Ascending
+
+
+
+
